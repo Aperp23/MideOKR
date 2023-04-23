@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "854131665078",
+    "project_id": "mideokr-9e7a0",
+    "storage_bucket": "mideokr-9e7a0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:854131665078:android:099e23530fc9487ba49e17",
+        "android_client_info": {
+          "package_name": "com.example.mideokr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "854131665078-9tl7gdefd667deojnab48ofqt5v5u7qj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDL1OMYWHnzF5lHsmktu-ElmWZlLaKUYac"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "854131665078-9tl7gdefd667deojnab48ofqt5v5u7qj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
