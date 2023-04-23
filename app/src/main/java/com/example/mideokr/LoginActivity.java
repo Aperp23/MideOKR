@@ -62,6 +62,14 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
+        tvRegister.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(LoginActivity.this, Olvido.class);
+                startActivity(i);
+            }
+        });
+
         btnEntrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

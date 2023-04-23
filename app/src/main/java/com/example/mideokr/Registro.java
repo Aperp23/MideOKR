@@ -92,8 +92,9 @@ public class Registro extends Activity {
 
                             Intent i = new Intent(Registro.this, LoginActivity.class);
                             startActivity(i);
+                            Toast.makeText(Registro.this, "Usuario: "+nombre+ " registrado Correctamente", Toast.LENGTH_SHORT).show();
                             //FIXME Si fuera necesario, finish();
-
+                            //TODO PROGRESS DIALOG
                         }else if(!task.isSuccessful()){//TODO CONTROLAR si no hay conex o usuario ya registrado
                             Toast.makeText(Registro.this, "Usuario ya Registrado", Toast.LENGTH_LONG).show();
                         }else{
