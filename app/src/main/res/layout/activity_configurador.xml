@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,89 +7,164 @@
     android:background="@color/personalizado"
     tools:context=".Configurador">
 
-    <EditText
-        android:id="@+id/etNombre"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:ems="10"
-        android:hint="@string/proyecto"
-        android:inputType="text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.061" />
+  <EditText
 
-    <Spinner
-        android:id="@+id/sProyectos"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+      android:id="@+id/etNombreProyecto"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
 
-    <Spinner
-        android:id="@+id/sSprint"
-        android:layout_width="113dp"
-        android:layout_height="37dp"
-        android:layout_marginEnd="68dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="200dp" />
+      android:layout_marginTop="30dp"
 
-    <Spinner
-        android:id="@+id/sSprint2"
-        android:layout_width="113dp"
-        android:layout_height="37dp"
-        android:layout_marginEnd="68dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="268dp" />
+      android:hint="Email"
+      android:textSize="22sp" />
 
-    <Spinner
-        android:id="@+id/sSprint3"
-        android:layout_width="113dp"
-        android:layout_height="37dp"
-        android:layout_marginEnd="68dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="345dp" />
+  <Spinner
 
-    <TextView
-        android:id="@+id/tvSprint"
-        android:layout_width="71dp"
-        android:layout_height="29dp"
-        android:text="Sprints"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="107dp"
-        tools:layout_editor_absoluteY="200dp" />
+      android:id="@+id/spSeleccionProyecto"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
 
-    <TextView
-        android:id="@+id/tvSemana"
-        android:layout_width="143dp"
-        android:layout_height="32dp"
-        android:text="Semana/Sprint"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="272dp" />
+      android:layout_below="@+id/etNombreProyecto"
+      android:layout_centerInParent="true"
 
-    <TextView
-        android:id="@+id/tvSemana2"
-        android:layout_width="102dp"
-        android:layout_height="30dp"
-        android:text="Horas/día"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="350dp" />
+      android:layout_marginTop="30dp"
+      android:text="Email"
+      android:textSize="22sp" />
 
-    <TextView
-        android:id="@+id/tvSemana3"
-        android:layout_width="102dp"
-        android:layout_height="30dp"
-        android:text="Horas/día"
-        android:textSize="20sp"
-        tools:layout_editor_absoluteX="87dp"
-        tools:layout_editor_absoluteY="350dp" />
+  <TextView
+      android:id="@+id/tvSprint"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:text="Nombre"
+      android:textSize="18sp"
+      android:layout_below="@+id/spSeleccionProyecto"
+      android:layout_marginLeft="16dp"
+      android:layout_marginTop="20dp"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+  <Spinner
+      android:id="@+id/spSprints"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:enabled="false"
+      android:inputType="textPersonName"
+      android:layout_marginRight="16dp"
+      android:layout_below="@+id/spSeleccionProyecto"
+      android:layout_toRightOf="@id/tvSprint"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="20dp"/>
+
+  <TextView
+      android:id="@+id/tvSemanas"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Apellido"
+      android:textSize="18sp"
+      android:layout_below="@+id/tvSprint"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="16dp"
+      />
+
+  <Spinner
+      android:id="@+id/spSemanas"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:enabled="false"
+      android:inputType="textPersonName"
+      android:layout_below="@+id/spSprints"
+      android:layout_marginRight="16dp"
+      android:layout_toRightOf="@id/tvSemanas"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="20dp"/>
+
+  <TextView
+      android:id="@+id/tvHoras"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Apellido"
+      android:textSize="18sp"
+      android:layout_below="@+id/tvSemanas"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="16dp"
+      />
+
+  <Spinner
+      android:id="@+id/spHoras"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:enabled="false"
+      android:inputType="textPersonName"
+      android:layout_below="@+id/spSemanas"
+      android:layout_marginRight="16dp"
+      android:layout_toRightOf="@id/tvHoras"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="20dp"/>
+
+  <TextView
+      android:id="@+id/tvTrabajadores"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Apellido"
+      android:textSize="18sp"
+      android:layout_below="@+id/tvHoras"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="16dp"
+      />
+
+  <Spinner
+      android:id="@+id/spTrabajadores"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center"
+      android:enabled="false"
+      android:inputType="textPersonName"
+      android:layout_below="@+id/spHoras"
+      android:layout_marginRight="16dp"
+      android:layout_toRightOf="@id/tvTrabajadores"
+      android:layout_marginTop="20dp"
+      android:layout_marginLeft="20dp"/>
+  
+  <LinearLayout
+      android:id="@+id/llBotonera"
+      android:layout_marginTop="50dp"
+      android:gravity="center"
+
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_below="@+id/spTrabajadores"
+      android:orientation="horizontal">
+
+
+
+  <Button
+      android:id="@+id/btnGuardar"
+      android:layout_margin="15dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Guardar" />
+
+  <Button
+      android:id="@+id/btnBorrar"
+      android:layout_margin="15dp"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:text="Borrar" />
+  </LinearLayout>
+
+  <Button
+      android:id="@+id/btnSiguiente"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_below="@id/llBotonera"
+      android:layout_centerHorizontal="true"
+      android:layout_marginStart="15dp"
+      android:layout_marginEnd="15dp"
+      android:layout_marginBottom="15dp"
+      android:text="Siguiente" />
+
+
+</RelativeLayout>

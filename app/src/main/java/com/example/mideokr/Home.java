@@ -63,6 +63,14 @@ public class Home extends AppCompatActivity {
                 finish();
             }
         });
+
+        btnPrincipal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Home.this, Configurador.class);
+                startActivity(i);
+            }
+        });
     }
 
     private void cargarDatos() {

@@ -8,6 +8,8 @@ public class UsuarioModel {
     private String password;
     private String dni;
 
+    private ProyectoModel pm;
+
     public UsuarioModel() {
     }
 
@@ -21,6 +23,10 @@ public class UsuarioModel {
         this.email = email;
         this.password = password;
         this.dni = dni;
+    }
+
+    public UsuarioModel(ProyectoModel pm) {
+        this.pm = pm;
     }
 
     public String getNombre() {
