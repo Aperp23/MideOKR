@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/personalizado"
+    tools:context=".Configurador">
+
+    <EditText
+        android:id="@+id/etNombre"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:ems="10"
+        android:hint="@string/proyecto"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.061" />
+
+    <Spinner
+        android:id="@+id/sProyectos"
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNombre" />
+
+    <Spinner
+        android:id="@+id/sSprint"
+        android:layout_width="113dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <Spinner
+        android:id="@+id/sSprint2"
+        android:layout_width="113dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="268dp" />
+
+    <Spinner
+        android:id="@+id/sSprint3"
+        android:layout_width="113dp"
+        android:layout_height="37dp"
+        android:layout_marginEnd="68dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="345dp" />
+
+    <TextView
+        android:id="@+id/tvSprint"
+        android:layout_width="71dp"
+        android:layout_height="29dp"
+        android:text="Sprints"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="107dp"
+        tools:layout_editor_absoluteY="200dp" />
+
+    <TextView
+        android:id="@+id/tvSemana"
+        android:layout_width="143dp"
+        android:layout_height="32dp"
+        android:text="Semana/Sprint"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="272dp" />
+
+    <TextView
+        android:id="@+id/tvSemana2"
+        android:layout_width="102dp"
+        android:layout_height="30dp"
+        android:text="Horas/día"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="350dp" />
+
+    <TextView
+        android:id="@+id/tvSemana3"
+        android:layout_width="102dp"
+        android:layout_height="30dp"
+        android:text="Horas/día"
+        android:textSize="20sp"
+        tools:layout_editor_absoluteX="87dp"
+        tools:layout_editor_absoluteY="350dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

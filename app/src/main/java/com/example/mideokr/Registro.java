@@ -27,13 +27,9 @@ public class Registro extends Activity {
     private Button btnRegistro;
     private Button btnAtras;
 
-
     private DatabaseReference mDatabaseReference;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
-
-
-
 
     private String nombre, apellidos, password, dni, email;
     private String key;
@@ -53,10 +49,6 @@ public class Registro extends Activity {
         etEmail = (EditText) findViewById(R.id.etEmail);
         btnRegistro = (Button) findViewById(R.id.btnRegistro);
         btnAtras = (Button) findViewById(R.id.btnAtras);
-
-
-
-
 
         btnAtras.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,14 +92,10 @@ public class Registro extends Activity {
                         }else{
                             Toast.makeText(Registro.this, "Intentelo de nuevo más tarde. . .", Toast.LENGTH_SHORT).show();
                         }
-
                     }
                 });
-
             }
         });
-
-
     }
 
     private void recogerDatos() {//TODO VALIDACIONES

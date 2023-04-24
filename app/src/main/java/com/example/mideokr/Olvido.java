@@ -19,7 +19,6 @@ public class Olvido extends AppCompatActivity {
     private EditText etEmail;
     private Button btnAtras, btnEnviar;
 
-    //private ProgressDialog mDialog;
     private FirebaseAuth mAuth;
     private String mail;
 
@@ -65,19 +64,14 @@ public class Olvido extends AppCompatActivity {
             public void onComplete(@NonNull Task<Void> task) {
 
                 if(task.isSuccessful()){
-                    /*mDialog.setMessage("Espere un momento. . .");
-                    mDialog.setCanceledOnTouchOutside(false);*/
-                    Toast.makeText(Olvido.this, "Se ha enviado un correo para restablecer la contraseña", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Olvido.this, "Se ha enviado un correo para restablecer la contraseña",
+                            Toast.LENGTH_SHORT).show();
                     etEmail.setText("");
-                }else{
+                }
+                else{
                     Toast.makeText(Olvido.this, "No se pudo enviar el correo", Toast.LENGTH_SHORT).show();
                 }
-
-               // mDialog.dismiss();
-
             }
         });
-
-
     }
 }

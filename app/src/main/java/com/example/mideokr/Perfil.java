@@ -41,7 +41,6 @@ public class Perfil extends AppCompatActivity {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
         mDatabaseRef2 = FirebaseDatabase.getInstance().getReference("Usuarios");
 
-
         etNombre = (EditText) findViewById(R.id.etNombre);
         etApellidos = (EditText) findViewById(R.id.etApellidos);
         etPassword = (EditText) findViewById(R.id.etPassword);
@@ -74,30 +73,27 @@ public class Perfil extends AppCompatActivity {
                 dni =  etDni.getText().toString().trim();
                 password = etPassword.getText().toString().trim();
 
-
                 UsuarioModel um = new UsuarioModel(nombre,
                         apellidos,
                         email,
                         password,
                         dni);
 
-                mDatabaseRef2.child(usuario.getUid()).setValue(um).addOnCompleteListener(new OnCompleteListener<Void>() {
+                mDatabaseRef2.child(usuario.getUid()).setValue(um).
+                        addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if(task.isSuccessful()){
-                            Toast.makeText(Perfil.this, "Datos cambiados correctamente", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Perfil.this, "Datos cambiados correctamente",
+                                    Toast.LENGTH_LONG).show();
                         }else{
-                            Toast.makeText(Perfil.this, "No se pudo realizar el cambio", Toast.LENGTH_LONG).show();
+                            Toast.makeText(Perfil.this, "No se pudo realizar el cambio",
+                                    Toast.LENGTH_LONG).show();
                         }
                     }
                 });
-
-
-
             }
         });
-
-
     }
 
     private void cargarDatos() {
@@ -116,10 +112,7 @@ public class Perfil extends AppCompatActivity {
                     etApellidos.setText(usr[0].getApellidos().toString());
                     etPassword.setText(usr[0].getPassword().toString());
                     etDni.setText(usr[0].getDni().toString());
-
-
                 }
-
             }
 
             @Override

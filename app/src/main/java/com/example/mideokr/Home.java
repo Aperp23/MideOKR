@@ -33,15 +33,12 @@ public class Home extends AppCompatActivity {
 
     private final UsuarioModel[] usr = new UsuarioModel[1];
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
-
 
         tvNombre = (TextView) findViewById(R.id.tvNombre);
         tvEmail = (TextView) findViewById(R.id.tvEmail);
@@ -63,25 +60,15 @@ public class Home extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, Perfil.class);
                 startActivity(i);
-
                 finish();
             }
         });
-
-
-
-
-
-
-
-
-
     }
 
     private void cargarDatos() {
 
         Query q = mDatabaseRef.orderByChild("email").equalTo(emaiLPersona);
-        q.addListenerForSingleValueEvent(new ValueEventListener() {
+        q.addListenerForSingleValueEvent(new ValueEventListener() { //un escuchador por cada uno de los Uid
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
@@ -89,13 +76,10 @@ public class Home extends AppCompatActivity {
                     usr[0] = snapshot.getValue(UsuarioModel.class);
                 }
 
-                //assert usr[0] != null;
                 if(emaiLPersona.equals(usr[0].getEmail())){
                     tvEmail.setText(usr[0].getEmail().toString());
                     tvNombre.setText(usr[0].getNombre().toString());
-
                 }
-
             }
 
             @Override

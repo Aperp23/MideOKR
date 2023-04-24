@@ -8,7 +8,6 @@ public class UsuarioModel {
     private String password;
     private String dni;
 
-
     public UsuarioModel() {
     }
 

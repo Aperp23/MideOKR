@@ -19,22 +19,14 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginActivity extends AppCompatActivity {
-
     private EditText etEmail;
     private EditText etPassword;
     private TextView tvRegister;
     private Button btnEntrar;
     private Button btnRegistro;
-
     private String email, password;
-
-
-
     private FirebaseAuth auth;
     private DatabaseReference mDatabaseRef;
-
-
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,10 +48,7 @@ public class LoginActivity extends AppCompatActivity {
                Intent i = new Intent(LoginActivity.this, Registro.class);
                startActivity(i);
                finish();
-
             }
-
-
         });
 
         tvRegister.setOnClickListener(new View.OnClickListener() {
@@ -75,25 +64,23 @@ public class LoginActivity extends AppCompatActivity {
             public void onClick(View view) {
                 obtenerDatos();
 
-                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
+                auth.signInWithEmailAndPassword(email, password).addOnCompleteListener(
+                        LoginActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
 
                         if(task.isSuccessful()){
                             Intent i = new Intent(LoginActivity.this, Home.class);
                             startActivity(i);
-
-                        }else{
-                            Toast.makeText(LoginActivity.this, "Usuario o Contraseña Incorrectas", Toast.LENGTH_LONG).show();
                         }
-
+                        else{
+                            Toast.makeText(LoginActivity.this, "Usuario o contraseña incorrectos",
+                                    Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
-
-
             }
         });
-
     }
 
     private void obtenerDatos() {
