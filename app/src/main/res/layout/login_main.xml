@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -11,62 +12,50 @@
         android:id="@+id/etEmail"
         android:layout_width="300dp"
         android:layout_height="50dp"
+        android:layout_marginTop="150dp"
         android:ems="10"
         android:hint="@string/email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.223" />
+        android:layout_centerHorizontal="true" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="287dp"
         android:layout_height="61dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="@string/contraseña"
         android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etEmail" />
+        android:layout_below="@+id/etEmail"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:id="@+id/tvRegister"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
+        android:layout_marginTop="35dp"
         android:text="@string/olvido"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        android:layout_below="@+id/etPassword"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btnEntrar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:backgroundTint="@color/gris"
         android:text="@string/entrar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvRegister" />
+        android:layout_below="@+id/tvRegister"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/btnRegistro"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
         android:layout_marginTop="30dp"
         android:backgroundTint="@color/gris"
         android:text="@string/registro"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnEntrar" />
+        android:layout_below="@+id/btnEntrar"
+        android:layout_centerHorizontal="true"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</RelativeLayout>

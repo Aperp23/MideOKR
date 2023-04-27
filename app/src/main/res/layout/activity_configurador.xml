@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,164 +8,162 @@
     android:background="@color/personalizado"
     tools:context=".Configurador">
 
-  <EditText
+      <EditText
 
-      android:id="@+id/etNombreProyecto"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+          android:id="@+id/etNombreProyecto"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="30dp"
+          android:hint="Nombre de proyecto"
+          android:textSize="22sp"
+          android:layout_below="@+id/scRegistro"/>
 
-      android:layout_marginTop="30dp"
+      <Spinner
 
-      android:hint="Email"
-      android:textSize="22sp" />
+          android:id="@+id/spSeleccionProyecto"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/etNombreProyecto"
+          android:layout_centerInParent="true"
+          android:layout_marginTop="30dp"
+          android:textSize="22sp" />
 
-  <Spinner
-
-      android:id="@+id/spSeleccionProyecto"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-
-      android:layout_below="@+id/etNombreProyecto"
-      android:layout_centerInParent="true"
-
-      android:layout_marginTop="30dp"
-      android:text="Email"
-      android:textSize="22sp" />
-
-  <TextView
-      android:id="@+id/tvSprint"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:text="Nombre"
-      android:textSize="18sp"
-      android:layout_below="@+id/spSeleccionProyecto"
-      android:layout_marginLeft="16dp"
-      android:layout_marginTop="20dp"/>
+      <TextView
+          android:id="@+id/tvSprint"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:text="Sprints"
+          android:textSize="18sp"
+          android:layout_below="@+id/spSeleccionProyecto"
+          android:layout_marginLeft="16dp"
+          android:layout_marginTop="20dp"/>
 
 
-  <Spinner
-      android:id="@+id/spSprints"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:enabled="false"
-      android:inputType="textPersonName"
-      android:layout_marginRight="16dp"
-      android:layout_below="@+id/spSeleccionProyecto"
-      android:layout_toRightOf="@id/tvSprint"
-      android:layout_marginTop="20dp"
-      android:layout_marginLeft="20dp"/>
+      <Spinner
+          android:id="@+id/spSprints"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:enabled="false"
+          android:inputType="textPersonName"
+          android:layout_marginRight="16dp"
+          android:layout_below="@+id/spSeleccionProyecto"
+          android:layout_toRightOf="@id/tvSprint"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="20dp"/>
 
-  <TextView
-      android:id="@+id/tvSemanas"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Apellido"
-      android:textSize="18sp"
-      android:layout_below="@+id/tvSprint"
-      android:layout_marginTop="20dp"
-      android:layout_marginLeft="16dp"
-      />
+      <TextView
+          android:id="@+id/tvSemanas"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Semanas/Sprint"
+          android:textSize="18sp"
+          android:layout_below="@+id/tvSprint"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="16dp"
+          />
 
-  <Spinner
-      android:id="@+id/spSemanas"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:enabled="false"
-      android:inputType="textPersonName"
-      android:layout_below="@+id/spSprints"
-      android:layout_marginRight="16dp"
-      android:layout_toRightOf="@id/tvSemanas"
-      android:layout_marginTop="20dp"
-      android:layout_marginLeft="20dp"/>
+      <Spinner
+          android:id="@+id/spSemanas"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:enabled="false"
+          android:inputType="textPersonName"
+          android:layout_below="@+id/spSprints"
+          android:layout_marginRight="16dp"
+          android:layout_toRightOf="@id/tvSemanas"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="20dp"/>
 
-  <TextView
-      android:id="@+id/tvHoras"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Apellido"
-      android:textSize="18sp"
-      android:layout_below="@+id/tvSemanas"
-      android:layout_marginTop="20dp"
-      android:layout_marginLeft="16dp"
-      />
+      <TextView
+          android:id="@+id/tvHoras"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Horas/día"
+          android:textSize="18sp"
+          android:layout_below="@+id/tvSemanas"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="16dp"
+          />
 
-  <Spinner
-      android:id="@+id/spHoras"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:enabled="false"
-      android:inputType="textPersonName"
-      android:layout_below="@+id/spSemanas"
-      android:layout_marginRight="16dp"
-      android:layout_toRightOf="@id/tvHoras"
-      android:layout_marginTop="20dp"
-      android:layout_marginLeft="20dp"/>
+      <Spinner
+          android:id="@+id/spHoras"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:enabled="false"
+          android:inputType="textPersonName"
+          android:layout_below="@+id/spSemanas"
+          android:layout_marginRight="16dp"
+          android:layout_toRightOf="@id/tvHoras"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="20dp"/>
 
-  <TextView
-      android:id="@+id/tvTrabajadores"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Apellido"
-      android:textSize="18sp"
-      android:layout_below="@+id/tvHoras"
-      android:layout_marginTop="20dp"
-      android:layout_marginLeft="16dp"
-      />
+      <TextView
+          android:id="@+id/tvTrabajadores"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Trabajadores"
+          android:textSize="18sp"
+          android:layout_below="@+id/tvHoras"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="16dp"
+          />
 
-  <Spinner
-      android:id="@+id/spTrabajadores"
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_gravity="center"
-      android:enabled="false"
-      android:inputType="textPersonName"
-      android:layout_below="@+id/spHoras"
-      android:layout_marginRight="16dp"
-      android:layout_toRightOf="@id/tvTrabajadores"
-      android:layout_marginTop="20dp"
-      android:layout_marginLeft="20dp"/>
-  
-  <LinearLayout
-      android:id="@+id/llBotonera"
-      android:layout_marginTop="50dp"
-      android:gravity="center"
+      <Spinner
+          android:id="@+id/spTrabajadores"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:enabled="false"
+          android:inputType="textPersonName"
+          android:layout_below="@+id/spHoras"
+          android:layout_marginRight="16dp"
+          android:layout_toRightOf="@id/tvTrabajadores"
+          android:layout_marginTop="20dp"
+          android:layout_marginLeft="20dp"/>
 
-      android:layout_width="match_parent"
-      android:layout_height="wrap_content"
-      android:layout_below="@+id/spTrabajadores"
-      android:orientation="horizontal">
+      <LinearLayout
+          android:id="@+id/llBotonera"
+          android:layout_marginTop="50dp"
+          android:gravity="center"
 
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_below="@+id/spTrabajadores"
+          android:orientation="horizontal">
 
+      <Button
+          android:id="@+id/btnGuardar"
+          android:layout_margin="15dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:backgroundTint="@color/gris"
+          android:ems="10"
+          android:text="Guardar" />
 
-  <Button
-      android:id="@+id/btnGuardar"
-      android:layout_margin="15dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Guardar" />
+      <Button
+          android:id="@+id/btnBorrar"
+          android:layout_margin="15dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:ems="10"
+          android:backgroundTint="@color/gris"
+          android:text="Borrar" />
+      </LinearLayout>
 
-  <Button
-      android:id="@+id/btnBorrar"
-      android:layout_margin="15dp"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="Borrar" />
-  </LinearLayout>
-
-  <Button
-      android:id="@+id/btnSiguiente"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_below="@id/llBotonera"
-      android:layout_centerHorizontal="true"
-      android:layout_marginStart="15dp"
-      android:layout_marginEnd="15dp"
-      android:layout_marginBottom="15dp"
-      android:text="Siguiente" />
-
-
+      <Button
+          android:id="@+id/btnSiguiente"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:backgroundTint="@color/gris"
+          android:layout_below="@id/llBotonera"
+          android:layout_centerHorizontal="true"
+          android:layout_marginStart="15dp"
+          android:layout_marginEnd="15dp"
+          android:layout_marginBottom="15dp"
+          android:ems="10"
+          android:text="Siguiente" />
 </RelativeLayout>
