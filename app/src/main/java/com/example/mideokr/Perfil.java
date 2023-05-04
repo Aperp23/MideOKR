@@ -76,7 +76,6 @@ public class Perfil extends AppCompatActivity {
                 UsuarioModel um = new UsuarioModel(nombre,
                         apellidos,
                         email,
-                        password,
                         dni);
 
                 mDatabaseRef2.child(usuario.getUid()).setValue(um).

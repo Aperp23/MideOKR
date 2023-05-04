@@ -74,11 +74,16 @@ public class Registro extends Activity {
 
                             key = mDatabaseReference.push().getKey();
 
+                            /*TrabajadoresModel trm = new TrabajadoresModel("Tester", "10");
+                            TareasModel tam = new TareasModel("Login", "5");
+
+                            ProyectoModel pm = new ProyectoModel("NombreProyecto", "4","5","4","5","4", tam, trm);
+*/
                             UsuarioModel um = new UsuarioModel(nombre,
                                     apellidos,
                                     email,
-                                    password,
-                                    dni);
+                                    dni/*,
+                                    pm*/);
 
                             mDatabaseReference.child(user.getUid()).setValue(um);
 

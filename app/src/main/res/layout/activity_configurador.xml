@@ -16,7 +16,7 @@
           android:layout_marginTop="30dp"
           android:hint="Nombre de proyecto"
           android:textSize="22sp"
-          android:layout_below="@+id/scRegistro"/>
+         />
 
       <Spinner
 
@@ -46,6 +46,7 @@
           android:layout_height="wrap_content"
           android:layout_gravity="center"
           android:enabled="false"
+          android:gravity="center"
           android:inputType="textPersonName"
           android:layout_marginRight="16dp"
           android:layout_below="@+id/spSeleccionProyecto"
@@ -69,6 +70,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
+          android:gravity="center"
           android:enabled="false"
           android:inputType="textPersonName"
           android:layout_below="@+id/spSprints"
@@ -93,6 +95,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
+          android:gravity="center"
           android:enabled="false"
           android:inputType="textPersonName"
           android:layout_below="@+id/spSemanas"
@@ -117,6 +120,7 @@
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_gravity="center"
+          android:gravity="center"
           android:enabled="false"
           android:inputType="textPersonName"
           android:layout_below="@+id/spHoras"
@@ -125,11 +129,32 @@
           android:layout_marginTop="20dp"
           android:layout_marginLeft="20dp"/>
 
+      <TextView
+          android:id="@+id/tvPtosHistoria"
+          android:layout_below="@id/tvTrabajadores"
+          android:layout_marginTop="20dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="16dp"
+          android:textSize="18sp"
+          android:text="Puntos Historia" />
+
+      <TextView
+          android:id="@+id/tvResultadoPtosHistoria"
+          android:layout_below="@id/spTrabajadores"
+          android:layout_toRightOf="@id/tvPtosHistoria"
+          android:layout_marginTop="20dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="16dp"
+          android:textSize="18sp" />
+
+
+
       <LinearLayout
           android:id="@+id/llBotonera"
           android:layout_marginTop="50dp"
           android:gravity="center"
-
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
           android:layout_below="@+id/spTrabajadores"
@@ -137,21 +162,29 @@
 
       <Button
           android:id="@+id/btnGuardar"
-          android:layout_margin="15dp"
+          android:layout_margin="5dp"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:backgroundTint="@color/gris"
-          android:ems="10"
           android:text="Guardar" />
 
       <Button
           android:id="@+id/btnBorrar"
-          android:layout_margin="15dp"
+          android:layout_margin="5dp"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:ems="10"
           android:backgroundTint="@color/gris"
           android:text="Borrar" />
+
+      <Button
+          android:id="@+id/btnEditar"
+          android:layout_margin="5dp"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:backgroundTint="@color/gris"
+          android:text="Editar" />
+
+
       </LinearLayout>
 
       <Button
@@ -164,6 +197,5 @@
           android:layout_marginStart="15dp"
           android:layout_marginEnd="15dp"
           android:layout_marginBottom="15dp"
-          android:ems="10"
           android:text="Siguiente" />
 </RelativeLayout>

@@ -1,6 +1,8 @@
 package com.example.mideokr;
 
-public class UsuarioModel {
+import java.io.Serializable;
+
+public class UsuarioModel implements Serializable {
 
     private String nombre;
     private String apellidos;
@@ -17,17 +19,26 @@ public class UsuarioModel {
         this.dni = dni;
     }
 
-    public UsuarioModel(String nombre, String apellidos, String email, String password, String dni) {
+    public UsuarioModel(String nombre, String apellidos, String email, String dni) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
-        this.password = password;
         this.dni = dni;
+    }
+
+    public UsuarioModel(String nombre, String apellidos, String email, String dni, ProyectoModel pm) {
+        this.nombre = nombre;
+        this.apellidos = apellidos;
+        this.email = email;
+        this.dni = dni;
+        this.pm = pm;
     }
 
     public UsuarioModel(ProyectoModel pm) {
         this.pm = pm;
     }
+
+
 
     public String getNombre() {
         return nombre;
@@ -67,5 +78,13 @@ public class UsuarioModel {
 
     public void setDni(String dni) {
         this.dni = dni;
+    }
+
+    public ProyectoModel getPm() {
+        return pm;
+    }
+
+    public void setPm(ProyectoModel pm) {
+        this.pm = pm;
     }
 }

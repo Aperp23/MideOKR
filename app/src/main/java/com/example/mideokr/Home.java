@@ -9,8 +9,11 @@ import android.provider.ContactsContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.mideokr.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.io.Serializable;
 
 public class Home extends AppCompatActivity {
 
@@ -32,6 +37,8 @@ public class Home extends AppCompatActivity {
     private String emaiLPersona;
 
     private final UsuarioModel[] usr = new UsuarioModel[1];
+
+    private UsuarioModel um2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +75,24 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(Home.this, Configurador.class);
+                i.putExtra("uid", usuario.getUid().toString());
+                i.putExtra("todo", (Serializable) um2);
                 startActivity(i);
+
+
+            }
+        });
+
+
+        btnSesion.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //FirebaseAuth.getInstance().signOut();
             }
         });
     }
+
+
 
     private void cargarDatos() {
 
@@ -85,6 +106,7 @@ public class Home extends AppCompatActivity {
                 }
 
                 if(emaiLPersona.equals(usr[0].getEmail())){
+                    um2= new UsuarioModel(usr[0].getNombre(),usr[0].getApellidos(),usr[0].getEmail(),usr[0].getDni());
                     tvEmail.setText(usr[0].getEmail().toString());
                     tvNombre.setText(usr[0].getNombre().toString());
                 }
