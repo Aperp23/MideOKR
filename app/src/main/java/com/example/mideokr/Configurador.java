@@ -3,6 +3,7 @@ package com.example.mideokr;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -52,26 +53,26 @@ public class Configurador extends AppCompatActivity {
     private ArrayList<ProyectoModel> arrProyectosEnteros = new ArrayList<ProyectoModel>();
 
     private ProyectoModel pm;
+    private ProyectoModel pmAct;
     private UsuarioModel um;
 
-    private DatabaseReference mDatabaseReference, mDatabaseReference2, mDatabaseReference3;
+    private DatabaseReference mDatabaseReference, mDatabaseReference2, mDatabaseReference3, mDatabaseReference4, mDatabaseReference5;
 
     private String key;
     private FirebaseAuth firebaseAuth;
     private FirebaseUser user;
     public String usuarioExtra;
     private String sprint, semanas, horas, trabajadores, nombreProyecto, proyecto;
-    private String sprintObt, semanasObt, horasObt, trabajadoresObt, ptosHistoriaObt;
+    private String sprintObt, semanasObt, horasObt, trabajadoresObt, ptosHistoriaObt, keyObt;
 
     private int flag=0;
     private String emaiLPersona;
     private int ptosHistoria;
 
     private final UsuarioModel[] usr = new UsuarioModel[1];
-
+    //FIXME CUANDO SE GUARDA UN NUEVO PROYECTO O SE ACTUALIZA UN PROYECTO ANTERIOR, SE DUPLICAN LOS DATOS EN EL SPINNER DE spSeleccionProyecto, Posible solución Progress bar, posible error asincronía.
     private UsuarioModel usuarioM, uRecibido, userExtra;
-    //TODO VALIDAR QUE TODOS LOS SPINNER TIENEN DATOS REALES
-    //TODO CREAR UN BOTON DE EDITAR QUE HABILITE LOS CAMPOS DESHABILITADOS
+
 
 
     @Override
@@ -93,7 +94,8 @@ public class Configurador extends AppCompatActivity {
         mDatabaseReference2 = FirebaseDatabase.getInstance().getReference("Usuarios");
         mDatabaseReference = FirebaseDatabase.getInstance().getReference("Usuarios").child(usuarioExtra);
         mDatabaseReference3 = FirebaseDatabase.getInstance().getReference("Usuarios").child(usuarioExtra).child("PROYECTOS");
-
+        mDatabaseReference4 = FirebaseDatabase.getInstance().getReference("Usuarios").child(usuarioExtra).child("PROYECTOS");
+        mDatabaseReference5 = FirebaseDatabase.getInstance().getReference("Usuarios").child(usuarioExtra).child("PROYECTOS");
 
 
         arrConfiguracion.add(0, "Selecciona un valor de la lista");
@@ -123,17 +125,27 @@ public class Configurador extends AppCompatActivity {
         btnSiguiente.setEnabled(false);
         btnBorrar.setEnabled(false);
         btnEditar.setEnabled(false);
-
+        arrProyectos.clear();
         cargarDatos();
 
 
 
-        etNombreProyecto.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //habilitar();
-            }
-        });
+       btnBorrar.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View view) {
+               borrarProyecto();
+               btnEditar.setEnabled(false);
+               btnBorrar.setEnabled(false);
+               btnSiguiente.setEnabled(false);
+
+               btnGuardar.setEnabled(true);
+               etNombreProyecto.setEnabled(true);
+               spSprints.setEnabled(true);
+               spHoras.setEnabled(true);
+               spSemanas.setEnabled(true);
+               spTrabajadores.setEnabled(true);
+           }
+       });
 
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -143,12 +155,18 @@ public class Configurador extends AppCompatActivity {
                 if(flag==0) {
                     //btnGuardar.setEnabled(false);
                     //btnSiguiente.setEnabled(true);
-
+                    arrProyectos.clear();
                     guardarDatos();
                     arrProyectos.clear();
 
+
+
                 }else if(flag==1){
+                    arrProyectos.clear();
                     actualizarDatos();
+                    spSeleccionProyecto.setEnabled(true);
+                    arrProyectos.clear();
+                    flag=0;
                 }
 
 
@@ -159,7 +177,7 @@ public class Configurador extends AppCompatActivity {
         btnEditar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                flag=1;
                 etNombreProyecto.setEnabled(true);
                 btnGuardar.setEnabled(true);
                 spSprints.setEnabled(true);
@@ -167,10 +185,20 @@ public class Configurador extends AppCompatActivity {
                 spHoras.setEnabled(true);
                 spTrabajadores.setEnabled(true);
 
+                spSeleccionProyecto.setEnabled(false);
                 btnEditar.setEnabled(false);
                 btnBorrar.setEnabled(false);
                 btnSiguiente.setEnabled(false);
 
+            }
+        });
+
+        btnSiguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(Configurador.this, Tareas.class);
+                i.putExtra("keyProyecto", keyObt);
+                startActivity(i);
             }
         });
 
@@ -183,6 +211,7 @@ public class Configurador extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 sprint = (String) spSprints.getAdapter().getItem( i );
+                arrProyectos.clear();
             }
 
             @Override
@@ -191,7 +220,6 @@ public class Configurador extends AppCompatActivity {
             }
         });
 
-
         ArrayAdapter adpSemanas = new ArrayAdapter(Configurador.this, android.R.layout.simple_spinner_dropdown_item, arrConfiguracion );
         spSemanas.setAdapter(adpSemanas);
         spSemanas.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -199,6 +227,7 @@ public class Configurador extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 semanas = (String) spSemanas.getAdapter().getItem( i );
+                arrProyectos.clear();
             }
 
             @Override
@@ -214,6 +243,7 @@ public class Configurador extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 horas = (String) spHoras.getAdapter().getItem( i );
+                arrProyectos.clear();
             }
 
             @Override
@@ -229,6 +259,8 @@ public class Configurador extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 trabajadores = (String) spTrabajadores.getAdapter().getItem( i );
+
+                arrProyectos.clear();
             }
 
             @Override
@@ -249,6 +281,7 @@ public class Configurador extends AppCompatActivity {
                         horasObt = pm5.getNumHoras();
                         trabajadoresObt = pm5.getNumTrabajadores();
                         ptosHistoriaObt = pm5.getPtosHistoria();
+                        keyObt = pm5.getKeyProyecto();
 
                         spSprints.setSelection(Integer.parseInt(sprintObt));
                         spSemanas.setSelection(Integer.parseInt(semanasObt));
@@ -267,12 +300,10 @@ public class Configurador extends AppCompatActivity {
                         btnSiguiente.setEnabled(true);
                         btnBorrar.setEnabled(true);
                         btnEditar.setEnabled(true);
-
-
+                        arrProyectos.clear();
 
                     }
                 }
-
             }
 
             @Override
@@ -281,21 +312,59 @@ public class Configurador extends AppCompatActivity {
             }
         });
 
-
-
-
-
-
     }
 
     private void actualizarDatos() {
-
+        arrProyectos.clear();
+        ptosHistoria = Integer.parseInt(trabajadores) * Integer.parseInt(horas) * Integer.parseInt(sprint);
+        nombreProyecto = etNombreProyecto.getText().toString().trim();
+        pmAct = new ProyectoModel(nombreProyecto, sprint, semanas, horas, trabajadores, String.valueOf(ptosHistoria), keyObt);
+        mDatabaseReference4.child(keyObt).setValue(pmAct).addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    Toast.makeText(Configurador.this, "Proyecto Editado. . .", Toast.LENGTH_LONG).show();
+                    spSprints.setSelection(0);
+                    spSemanas.setSelection(0);
+                    spHoras.setSelection(0);
+                    spTrabajadores.setSelection(0);
+                    etNombreProyecto.setText("");
+                    tvResultadoPtosHistoria.setText("");
+                }else{
+                    Toast.makeText(Configurador.this, "Intentelo de nuevo más tarde", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
     }
 
+    private void borrarProyecto(){
+        mDatabaseReference5.child(keyObt).removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if(task.isSuccessful()){
+                    spSprints.setSelection(0);
+                    spSemanas.setSelection(0);
+                    spHoras.setSelection(0);
+                    spTrabajadores.setSelection(0);
+                    etNombreProyecto.setText("");
+                    tvResultadoPtosHistoria.setText("");
+                }else{
+                    Toast.makeText(Configurador.this, "No se ha podido borrar. . .", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+        spSprints.setSelection(0);
+        spSemanas.setSelection(0);
+        spHoras.setSelection(0);
+        spTrabajadores.setSelection(0);
+        tvResultadoPtosHistoria.setText("");
+        etNombreProyecto.setText("");
+    }
+
     private void guardarDatos() {
-        if(etNombreProyecto.getText().toString().trim().equals("")){
-            Toast.makeText(this, "Debes Introducir nombre de proyecto", Toast.LENGTH_SHORT).show();
+        if(etNombreProyecto.getText().toString().trim().equals("") || sprint.equals("Selecciona un valor de la lista") || semanas.equals("Selecciona un valor de la lista") || horas.equals("Selecciona un valor de la lista") || trabajadores.equals("Selecciona un valor de la lista")){
+            Toast.makeText(this, "Debes rellenar todos los campos con (*)", Toast.LENGTH_SHORT).show();
         }else {
             nombreProyecto = etNombreProyecto.getText().toString().trim();
             ptosHistoria = Integer.parseInt(trabajadores) * Integer.parseInt(horas) * Integer.parseInt(sprint);
@@ -305,17 +374,6 @@ public class Configurador extends AppCompatActivity {
 
             pm = new ProyectoModel(nombreProyecto, sprint, semanas, horas, trabajadores, String.valueOf(ptosHistoria), key);
 
-
-
-            //uRecibido = new UsuarioModel(userExtra.getNombre(),userExtra.getApellidos(),userExtra.getEmail(), userExtra.getDni(), pm);
-
-
-            /*System.out.println("BBBBBBBBBBBBBBBBBBBBBBBB");
-            System.out.println(uRecibido.getEmail());*/
-
-//TODO RECIBE EL OBJETO PREPARADO PARA SU INGRESO
-
-            //FIXME AÑADIR IMPORTANTE UN LISTENER CUANDO TERMINE EL UPDATE CON EL PROYECTO GURADADO.
             mDatabaseReference.child("PROYECTOS").child(key).setValue(pm).addOnCompleteListener(new OnCompleteListener<Void>() {
                 @Override
                 public void onComplete(@NonNull Task<Void> task) {
@@ -326,7 +384,9 @@ public class Configurador extends AppCompatActivity {
                         spHoras.setSelection(0);
                         spTrabajadores.setSelection(0);
                         etNombreProyecto.setText("");
+                        tvResultadoPtosHistoria.setText("");
                         cargarDatos();
+                        Toast.makeText(Configurador.this, "Proyecto Guardado. . .", Toast.LENGTH_LONG).show();
 
                     }else{
                         Toast.makeText(Configurador.this, "Intentelo más tarde. . .", Toast.LENGTH_LONG).show();
@@ -360,8 +420,15 @@ public class Configurador extends AppCompatActivity {
                    arrProyectos.add(pm3.getNombreProyecto());
                 }
 
-                ArrayAdapter adpProyectos = new ArrayAdapter(Configurador.this, android.R.layout.simple_spinner_dropdown_item, arrProyectos );
+                ArrayList<String> arrTemp = new ArrayList<String>();
+
+                for (String a : arrProyectos){
+                    arrTemp.add(a);
+                }
+                arrProyectos.clear();
+                ArrayAdapter adpProyectos = new ArrayAdapter(Configurador.this, android.R.layout.simple_spinner_dropdown_item, arrTemp );
                 spSeleccionProyecto.setAdapter(adpProyectos);
+                arrProyectos.clear();
 
 
 

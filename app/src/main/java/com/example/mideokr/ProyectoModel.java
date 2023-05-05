@@ -27,6 +27,15 @@ public class ProyectoModel implements Serializable {
         this.keyProyecto = keyProyecto;
     }
 
+    public ProyectoModel(String nombreProyecto, String numSprints, String numSemanas, String numHoras, String numTrabajadores, String ptosHistoria) {
+        this.nombreProyecto = nombreProyecto;
+        this.numSprints = numSprints;
+        this.numSemanas = numSemanas;
+        this.numHoras = numHoras;
+        this.numTrabajadores = numTrabajadores;
+        this.ptosHistoria = ptosHistoria;
+    }
+
     public String getNombreProyecto() {
         return nombreProyecto;
     }

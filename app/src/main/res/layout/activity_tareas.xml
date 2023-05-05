@@ -27,7 +27,6 @@
         android:layout_marginLeft="15dp"
         android:hint="Nombre de tarea"
         android:textSize="20sp"
-        android:textStyle="bold"
         android:layout_below="@+id/tvNombreProyecto"/>
 
     <TextView
@@ -41,8 +40,8 @@
         android:text="Puntos historia: "
         android:layout_below="@+id/etNombreTarea" />
 
-    <TextView
-        android:id="@+id/tvResultadoPtosHistoria"
+    <EditText
+        android:id="@+id/etResultadoPtosHistoria"
         android:layout_toRightOf="@id/tvPtosHistoria"
         android:layout_below="@+id/etNombreTarea"
         android:layout_marginTop="20dp"
@@ -50,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:textSize="18sp"
-        android:textStyle="bold" />
+        android:hint="Puntos Historia" />
 
     <Spinner
         android:id="@+id/spSeleccionTarea"
