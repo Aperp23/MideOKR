@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/personalizado"
+    tools:context=".Tareas">
+
+    <TextView
+        android:id="@+id/tvNombreProyecto"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        android:text="" />
+
+    <EditText
+        android:id="@+id/etNombreTarea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:hint="Nombre de tarea"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_below="@+id/tvNombreProyecto"/>
+
+    <TextView
+        android:id="@+id/tvPtosHistoria"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:text="Puntos historia: "
+        android:layout_below="@+id/etNombreTarea" />
+
+    <TextView
+        android:id="@+id/tvResultadoPtosHistoria"
+        android:layout_toRightOf="@id/tvPtosHistoria"
+        android:layout_below="@+id/etNombreTarea"
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <Spinner
+        android:id="@+id/spSeleccionTarea"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tvPtosHistoria"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:textSize="22sp"
+        android:textStyle="bold"/>
+
+    <LinearLayout
+        android:id="@+id/llBotonera"
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spSeleccionTarea"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnGuardar"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gris"
+            android:text="Guardar" />
+
+        <Button
+            android:id="@+id/btnBorrar"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gris"
+            android:text="Borrar" />
+
+        <Button
+            android:id="@+id/btnEditar"
+            android:layout_margin="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gris"
+            android:text="Editar" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnSiguiente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/gris"
+        android:layout_below="@id/llBotonera"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:text="Siguiente" />
+
+</RelativeLayout>
