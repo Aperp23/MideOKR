@@ -1,6 +1,8 @@
 package com.example.mideokr;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -63,42 +65,55 @@ public class Registro extends Activity {
             @Override
             public void onClick(View view) {
                 recogerDatos();
-                //TODO Cuadro pregunta, estás seguro?
+                new AlertDialog.Builder(Registro.this)
+                        .setTitle("Se procederá a crear un usuario nuevo")
+                        .setMessage("¿Está seguro?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
 
-                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Registro.this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        user = firebaseAuth.getCurrentUser();
-                        if(task.isSuccessful()){
-                            user = firebaseAuth.getCurrentUser();
+                                firebaseAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(Registro.this, new OnCompleteListener<AuthResult>() {
+                                    @Override
+                                    public void onComplete(@NonNull Task<AuthResult> task) {
+                                        user = firebaseAuth.getCurrentUser();
+                                        if(task.isSuccessful()){
+                                            user = firebaseAuth.getCurrentUser();
 
-                            key = mDatabaseReference.push().getKey();
+                                            key = mDatabaseReference.push().getKey();
 
-                            /*TrabajadoresModel trm = new TrabajadoresModel("Tester", "10");
-                            TareasModel tam = new TareasModel("Login", "5");
 
-                            ProyectoModel pm = new ProyectoModel("NombreProyecto", "4","5","4","5","4", tam, trm);
-*/
-                            UsuarioModel um = new UsuarioModel(nombre,
-                                    apellidos,
-                                    email,
-                                    dni/*,
-                                    pm*/);
+                                            UsuarioModel um = new UsuarioModel(nombre,
+                                                    apellidos,
+                                                    email,
+                                                    dni);
 
-                            mDatabaseReference.child(user.getUid()).setValue(um);
+                                            mDatabaseReference.child(user.getUid()).setValue(um);
 
-                            Intent i = new Intent(Registro.this, LoginActivity.class);
-                            startActivity(i);
-                            Toast.makeText(Registro.this, "Usuario: "+nombre+ " registrado Correctamente", Toast.LENGTH_SHORT).show();
-                            //FIXME Si fuera necesario, finish();
-                            //TODO PROGRESS DIALOG
-                        }else if(!task.isSuccessful()){//TODO CONTROLAR si no hay conex o usuario ya registrado
-                            Toast.makeText(Registro.this, "Usuario ya Registrado", Toast.LENGTH_LONG).show();
-                        }else{
-                            Toast.makeText(Registro.this, "Intentelo de nuevo más tarde. . .", Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                });
+                                            Intent i = new Intent(Registro.this, LoginActivity.class);
+                                            startActivity(i);
+                                            Toast.makeText(Registro.this, "Usuario: "+nombre+ " registrado Correctamente", Toast.LENGTH_SHORT).show();
+                                            //FIXME Si fuera necesario, finish();
+                                            //TODO PROGRESS DIALOG
+                                        }else if(!task.isSuccessful()){//TODO CONTROLAR si no hay conex o usuario ya registrado
+                                            Toast.makeText(Registro.this, "Usuario ya Registrado", Toast.LENGTH_LONG).show();
+                                        }else{
+                                            Toast.makeText(Registro.this, "Intentelo de nuevo más tarde. . .", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                });
+
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                Toast.makeText(Registro.this, "Acción cancelada", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
+
+
             }
         });
     }

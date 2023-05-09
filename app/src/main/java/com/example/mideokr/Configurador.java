@@ -3,6 +3,8 @@ package com.example.mideokr;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -49,6 +51,7 @@ public class Configurador extends AppCompatActivity {
 
     private ArrayList<String> arrProyectos = new ArrayList<String>();
     private ArrayList<String> arrConfiguracion = new ArrayList<String>();
+    private ArrayList<String> arrTemp = new ArrayList<String>();
 
     private ArrayList<ProyectoModel> arrProyectosEnteros = new ArrayList<ProyectoModel>();
 
@@ -68,6 +71,7 @@ public class Configurador extends AppCompatActivity {
     private int flag=0;
     private String emaiLPersona;
     private int ptosHistoria;
+
 
     private final UsuarioModel[] usr = new UsuarioModel[1];
     //FIXME CUANDO SE GUARDA UN NUEVO PROYECTO O SE ACTUALIZA UN PROYECTO ANTERIOR, SE DUPLICAN LOS DATOS EN EL SPINNER DE spSeleccionProyecto, Posible solución Progress bar, posible error asincronía.
@@ -125,7 +129,6 @@ public class Configurador extends AppCompatActivity {
         btnSiguiente.setEnabled(false);
         btnBorrar.setEnabled(false);
         btnEditar.setEnabled(false);
-        arrProyectos.clear();
         cargarDatos();
 
 
@@ -133,17 +136,37 @@ public class Configurador extends AppCompatActivity {
        btnBorrar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
-               borrarProyecto();
-               btnEditar.setEnabled(false);
-               btnBorrar.setEnabled(false);
-               btnSiguiente.setEnabled(false);
 
-               btnGuardar.setEnabled(true);
-               etNombreProyecto.setEnabled(true);
-               spSprints.setEnabled(true);
-               spHoras.setEnabled(true);
-               spSemanas.setEnabled(true);
-               spTrabajadores.setEnabled(true);
+               new AlertDialog.Builder(Configurador.this)
+                       .setTitle("Se borrará el proyecto entero con todas las tareas y trabajadores")
+                       .setMessage("¿Está seguro?")
+                       .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+
+                               borrarProyecto();
+                               btnEditar.setEnabled(false);
+                               btnBorrar.setEnabled(false);
+                               btnSiguiente.setEnabled(false);
+
+                               btnGuardar.setEnabled(true);
+                               etNombreProyecto.setEnabled(true);
+                               spSprints.setEnabled(true);
+                               spHoras.setEnabled(true);
+                               spSemanas.setEnabled(true);
+                               spTrabajadores.setEnabled(true);
+
+                           }
+                       })
+                       .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                           @Override
+                           public void onClick(DialogInterface dialogInterface, int i) {
+                               dialogInterface.dismiss();
+                               Toast.makeText(Configurador.this, "Acción cancelada", Toast.LENGTH_SHORT).show();
+                           }
+                       })
+                       .show();
+
            }
        });
 
@@ -151,21 +174,14 @@ public class Configurador extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-               // cargarDatos();
                 if(flag==0) {
-                    //btnGuardar.setEnabled(false);
-                    //btnSiguiente.setEnabled(true);
-                    arrProyectos.clear();
                     guardarDatos();
-                    arrProyectos.clear();
-
-
-
                 }else if(flag==1){
-                    arrProyectos.clear();
+
                     actualizarDatos();
+
                     spSeleccionProyecto.setEnabled(true);
-                    arrProyectos.clear();
+
                     flag=0;
                 }
 
@@ -175,20 +191,39 @@ public class Configurador extends AppCompatActivity {
         });
 
         btnEditar.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View view) {
-                flag=1;
-                etNombreProyecto.setEnabled(true);
-                btnGuardar.setEnabled(true);
-                spSprints.setEnabled(true);
-                spSemanas.setEnabled(true);
-                spHoras.setEnabled(true);
-                spTrabajadores.setEnabled(true);
 
-                spSeleccionProyecto.setEnabled(false);
-                btnEditar.setEnabled(false);
-                btnBorrar.setEnabled(false);
-                btnSiguiente.setEnabled(false);
+
+                new AlertDialog.Builder(Configurador.this)
+                        .setTitle("Si procede a editar, se borrarán todas las tareas y trabajadores")
+                        .setMessage("¿Está seguro de editar el proyecto?")
+                        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                flag=1;
+                                etNombreProyecto.setEnabled(true);
+                                btnGuardar.setEnabled(true);
+                                spSprints.setEnabled(true);
+                                spSemanas.setEnabled(true);
+                                spHoras.setEnabled(true);
+                                spTrabajadores.setEnabled(true);
+
+                                spSeleccionProyecto.setEnabled(false);
+                                btnEditar.setEnabled(false);
+                                btnBorrar.setEnabled(false);
+                                btnSiguiente.setEnabled(false);
+                            }
+                        })
+                        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                dialogInterface.dismiss();
+                                Toast.makeText(Configurador.this, "Acción cancelada", Toast.LENGTH_SHORT).show();
+                            }
+                        })
+                        .show();
 
             }
         });
@@ -198,6 +233,7 @@ public class Configurador extends AppCompatActivity {
             public void onClick(View view) {
                 Intent i = new Intent(Configurador.this, Tareas.class);
                 i.putExtra("keyProyecto", keyObt);
+                i.putExtra("usr", usuarioExtra);
                 startActivity(i);
             }
         });
@@ -211,7 +247,7 @@ public class Configurador extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 sprint = (String) spSprints.getAdapter().getItem( i );
-                arrProyectos.clear();
+
             }
 
             @Override
@@ -227,7 +263,7 @@ public class Configurador extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 semanas = (String) spSemanas.getAdapter().getItem( i );
-                arrProyectos.clear();
+
             }
 
             @Override
@@ -243,7 +279,7 @@ public class Configurador extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
                 horas = (String) spHoras.getAdapter().getItem( i );
-                arrProyectos.clear();
+
             }
 
             @Override
@@ -260,7 +296,6 @@ public class Configurador extends AppCompatActivity {
 
                 trabajadores = (String) spTrabajadores.getAdapter().getItem( i );
 
-                arrProyectos.clear();
             }
 
             @Override
@@ -300,7 +335,7 @@ public class Configurador extends AppCompatActivity {
                         btnSiguiente.setEnabled(true);
                         btnBorrar.setEnabled(true);
                         btnEditar.setEnabled(true);
-                        arrProyectos.clear();
+
 
                     }
                 }
@@ -315,7 +350,7 @@ public class Configurador extends AppCompatActivity {
     }
 
     private void actualizarDatos() {
-        arrProyectos.clear();
+
         ptosHistoria = Integer.parseInt(trabajadores) * Integer.parseInt(horas) * Integer.parseInt(sprint);
         nombreProyecto = etNombreProyecto.getText().toString().trim();
         pmAct = new ProyectoModel(nombreProyecto, sprint, semanas, horas, trabajadores, String.valueOf(ptosHistoria), keyObt);
@@ -330,6 +365,7 @@ public class Configurador extends AppCompatActivity {
                     spTrabajadores.setSelection(0);
                     etNombreProyecto.setText("");
                     tvResultadoPtosHistoria.setText("");
+                    cargarDatos();
                 }else{
                     Toast.makeText(Configurador.this, "Intentelo de nuevo más tarde", Toast.LENGTH_LONG).show();
                 }
@@ -385,6 +421,8 @@ public class Configurador extends AppCompatActivity {
                         spTrabajadores.setSelection(0);
                         etNombreProyecto.setText("");
                         tvResultadoPtosHistoria.setText("");
+
+
                         cargarDatos();
                         Toast.makeText(Configurador.this, "Proyecto Guardado. . .", Toast.LENGTH_LONG).show();
 
@@ -402,7 +440,7 @@ public class Configurador extends AppCompatActivity {
         mDatabaseReference3.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
+                arrProyectosEnteros.clear();
                 for(DataSnapshot dataSnapshot1 : dataSnapshot.getChildren()){
                     ProyectoModel pm2;
 
@@ -414,21 +452,22 @@ public class Configurador extends AppCompatActivity {
                 }
                 arrProyectos.clear();
 
+
                 arrProyectos.add("Seleccione un proyecto");
 
                 for(ProyectoModel pm3 : arrProyectosEnteros){
                    arrProyectos.add(pm3.getNombreProyecto());
                 }
 
-                ArrayList<String> arrTemp = new ArrayList<String>();
 
+                arrTemp.clear();
                 for (String a : arrProyectos){
                     arrTemp.add(a);
                 }
-                arrProyectos.clear();
+
                 ArrayAdapter adpProyectos = new ArrayAdapter(Configurador.this, android.R.layout.simple_spinner_dropdown_item, arrTemp );
                 spSeleccionProyecto.setAdapter(adpProyectos);
-                arrProyectos.clear();
+
 
 
 
