@@ -12,6 +12,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -44,6 +45,7 @@ public class Configurador extends AppCompatActivity {
     private Button btnSiguiente;
 
     private Button btnEditar;
+    private ImageButton btnAtras;
 
     private EditText etNombreProyecto;
 
@@ -125,6 +127,7 @@ public class Configurador extends AppCompatActivity {
         btnBorrar = (Button) findViewById(R.id.btnBorrar);
         btnSiguiente = (Button) findViewById(R.id.btnSiguiente);
         btnEditar = (Button) findViewById(R.id.btnEditar);
+        btnAtras = (ImageButton) findViewById(R.id.btnAtras);
 
         btnSiguiente.setEnabled(false);
         btnBorrar.setEnabled(false);
@@ -132,7 +135,12 @@ public class Configurador extends AppCompatActivity {
         cargarDatos();
 
 
-
+        btnAtras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
        btnBorrar.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View view) {
@@ -350,28 +358,30 @@ public class Configurador extends AppCompatActivity {
     }
 
     private void actualizarDatos() {
-
-        ptosHistoria = Integer.parseInt(trabajadores) * Integer.parseInt(horas) * Integer.parseInt(sprint);
-        nombreProyecto = etNombreProyecto.getText().toString().trim();
-        pmAct = new ProyectoModel(nombreProyecto, sprint, semanas, horas, trabajadores, String.valueOf(ptosHistoria), keyObt);
-        mDatabaseReference4.child(keyObt).setValue(pmAct).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if(task.isSuccessful()){
-                    Toast.makeText(Configurador.this, "Proyecto Editado. . .", Toast.LENGTH_LONG).show();
-                    spSprints.setSelection(0);
-                    spSemanas.setSelection(0);
-                    spHoras.setSelection(0);
-                    spTrabajadores.setSelection(0);
-                    etNombreProyecto.setText("");
-                    tvResultadoPtosHistoria.setText("");
-                    cargarDatos();
-                }else{
-                    Toast.makeText(Configurador.this, "Intentelo de nuevo más tarde", Toast.LENGTH_LONG).show();
+        if (etNombreProyecto.getText().toString().trim().equals("") || sprint.equals("Selecciona un valor de la lista") || semanas.equals("Selecciona un valor de la lista") || horas.equals("Selecciona un valor de la lista") || trabajadores.equals("Selecciona un valor de la lista")) {
+            Toast.makeText(this, "Debes rellenar todos los campos con (*)", Toast.LENGTH_SHORT).show();
+        } else{
+            ptosHistoria = Integer.parseInt(trabajadores) * Integer.parseInt(horas) * Integer.parseInt(sprint);
+            nombreProyecto = etNombreProyecto.getText().toString().trim();
+            pmAct = new ProyectoModel(nombreProyecto, sprint, semanas, horas, trabajadores, String.valueOf(ptosHistoria), keyObt);
+            mDatabaseReference4.child(keyObt).setValue(pmAct).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(Configurador.this, "Proyecto Editado. . .", Toast.LENGTH_LONG).show();
+                        spSprints.setSelection(0);
+                        spSemanas.setSelection(0);
+                        spHoras.setSelection(0);
+                        spTrabajadores.setSelection(0);
+                        etNombreProyecto.setText("");
+                        tvResultadoPtosHistoria.setText("");
+                        cargarDatos();
+                    } else {
+                        Toast.makeText(Configurador.this, "Intentelo de nuevo más tarde", Toast.LENGTH_LONG).show();
+                    }
                 }
-            }
-        });
-
+            });
+        }
     }
 
     private void borrarProyecto(){
@@ -390,6 +400,8 @@ public class Configurador extends AppCompatActivity {
                 }
             }
         });
+
+        //FIXME REVISAR ESTO
         spSprints.setSelection(0);
         spSemanas.setSelection(0);
         spHoras.setSelection(0);

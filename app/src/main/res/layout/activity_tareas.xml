@@ -25,7 +25,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
-        android:hint="Nombre de tarea"
+        android:hint="Nombre de tarea*"
         android:textSize="20sp"
         android:layout_below="@+id/tvNombreProyecto"/>
 
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:text="Puntos historia: "
+        android:text="Puntos historia*: "
         android:layout_below="@+id/etNombreTarea" />
 
     <EditText

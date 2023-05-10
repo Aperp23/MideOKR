@@ -8,11 +8,24 @@
     android:background="@color/personalizado"
     tools:context=".Configurador">
 
+      <ImageButton
+          android:id="@+id/btnAtras"
+          android:layout_width="50dp"
+          android:layout_height="50dp"
+          android:layout_alignParentTop="true"
+          android:layout_alignParentRight="true"
+          android:layout_marginTop="16dp"
+          android:layout_marginRight="16dp"
+          android:backgroundTint="#5AB6AD"
+          app:srcCompat="@drawable/ic_cruz"
+          tools:ignore="VectorDrawableCompat" />
+
+
       <EditText
           android:id="@+id/etNombreProyecto"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
-          android:layout_marginTop="30dp"
+          android:layout_marginTop="45dp"
           android:layout_marginRight="15dp"
           android:layout_marginLeft="15dp"
           android:hint="Nombre de proyecto*"
@@ -27,13 +40,13 @@
           android:layout_centerVertical="true"
           android:layout_marginRight="15dp"
           android:layout_marginLeft="15dp"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="15dp"
           android:textSize="22sp"
           android:textStyle="bold"/>
 
       <LinearLayout
           android:id="@+id/llSprint"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="15dp"
           android:gravity="center"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -64,7 +77,7 @@
 
       <LinearLayout
           android:id="@+id/llSemanas"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="15dp"
           android:gravity="center"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -94,7 +107,7 @@
 
       <LinearLayout
           android:id="@+id/llHoras"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="15dp"
           android:gravity="center"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -124,7 +137,7 @@
 
       <LinearLayout
           android:id="@+id/llTrabajadores"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="15dp"
           android:gravity="center"
           android:layout_width="match_parent"
           android:layout_height="wrap_content"
@@ -155,7 +168,7 @@
       <TextView
           android:id="@+id/tvPtosHistoria"
           android:layout_below="@id/llTrabajadores"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="15dp"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginLeft="16dp"
@@ -167,7 +180,7 @@
           android:id="@+id/tvResultadoPtosHistoria"
           android:layout_below="@id/llTrabajadores"
           android:layout_toRightOf="@id/tvPtosHistoria"
-          android:layout_marginTop="20dp"
+          android:layout_marginTop="15dp"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:layout_marginLeft="16dp"

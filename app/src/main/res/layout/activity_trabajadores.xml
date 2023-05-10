@@ -19,13 +19,13 @@
         android:text=""/>
 
     <EditText
-        android:id="@+id/etNombreTrabajador"
+        android:id="@+id/etTipoTrabajador"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginRight="15dp"
         android:layout_marginLeft="15dp"
-        android:hint="Nombre de trabajador"
+        android:hint="Tipo de trabajador*"
         android:textSize="20sp"
         android:layout_below="@+id/tvNombreProyecto"/>
 
@@ -35,7 +35,7 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/etNombreTrabajador"
+        android:layout_below="@+id/etTipoTrabajador"
         android:orientation="horizontal">
 
         <TextView
@@ -45,7 +45,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:text="WIP: " />
+            android:text="WIP*: " />
 
         <EditText
             android:id="@+id/etResultadoWip"

@@ -7,12 +7,20 @@ public class TareasModel implements Serializable {
     private String nombre;
     private String ptosHistoria;
 
+    private String keyTarea;
+
     public TareasModel() {
     }
 
     public TareasModel(String nombre, String ptosHistoria) {
         this.nombre = nombre;
         this.ptosHistoria = ptosHistoria;
+    }
+
+    public TareasModel(String nombre, String ptosHistoria, String keyTarea) {
+        this.nombre = nombre;
+        this.ptosHistoria = ptosHistoria;
+        this.keyTarea = keyTarea;
     }
 
     public String getNombre() {
@@ -29,5 +37,13 @@ public class TareasModel implements Serializable {
 
     public void setPtosHistoria(String ptosHistoria) {
         this.ptosHistoria = ptosHistoria;
+    }
+
+    public String getKeyTarea() {
+        return keyTarea;
+    }
+
+    public void setKeyTarea(String keyTarea) {
+        this.keyTarea = keyTarea;
     }
 }
