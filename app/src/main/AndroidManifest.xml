@@ -12,6 +12,15 @@
         android:theme="@style/Theme.MideOKR"
         tools:targetApi="31">
         <activity
+            android:name=".TareasTrabajadores"
+            android:exported="false" />
+        <activity
+            android:name=".TareasSprint"
+            android:exported="false" />
+        <activity
+            android:name=".Control"
+            android:exported="false" />
+        <activity
             android:name=".Feedback"
             android:exported="false" />
         <activity

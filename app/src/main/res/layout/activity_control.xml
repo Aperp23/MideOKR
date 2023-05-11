@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/personalizado">
+
+
+    <Spinner
+        android:id="@+id/spProyecto"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:background="@color/gris" />
+
+    <LinearLayout
+        android:id="@+id/llCalculo"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/spProyecto"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnCalculo"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gris"
+            android:ems="10"
+            android:text="@string/calculo"/>
+
+        <EditText
+            android:id="@+id/etNumeroDias"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:inputType="number"
+            android:layout_toRightOf="@id/btnCalculo"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llSprint"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llCalculo"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvSprint"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sprint actual"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:id="@+id/spSprint"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="20dp"
+            android:background="@color/gris" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llPtsHistoria"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/llSprint"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvPtosHistoria"
+            android:layout_width="156dp"
+            android:layout_height="79dp"
+            android:textAlignment="center"
+            android:text="Puntos historia completados en el sprint"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etPtsHistoria"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:ems="10"
+            android:inputType="number" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnComprobar"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/gris"
+        android:ems="10"
+        android:text="@string/comprobar"
+        android:layout_below="@+id/llPtsHistoria"  />
+
+
+</RelativeLayout>
