@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -134,11 +135,20 @@ public class Trabajadores extends AppCompatActivity {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //TODO *
-                // CUANDO LE DES A SIGUIENTE, SE DEBE COMPROBAR SI EXISTEN TAREAS Y TRABAJADORES DENTRO DE PROYECTO
-                // SI FALTARA CUALQUIERA DE ELLAS, SE LE ENVIARÍA A LA VISTA CONFIGURADOR
-                // PARA QUE CREARA LAS TAREAS Y TRABAJADORES NECESARIOS
-            }
+
+
+                if(arrTrabajadores.size() == 1)
+                {
+                    Toast.makeText(Trabajadores.this, "Debe introducir al menos un trabajador para continuar", Toast.LENGTH_LONG).show();
+                }
+                else{
+                   Intent i = new Intent(Trabajadores.this, TareasSprint.class);
+                    i.putExtra("keyProyecto", keyRecib);
+                    i.putExtra("usr", usuarioExtra);
+                    i.putExtra("nombrePry", nombreProyecto);
+                   startActivity(i);
+                }
+    }
         });
         btnGuardar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -315,7 +325,7 @@ public class Trabajadores extends AppCompatActivity {
                 btnGuardar.setEnabled(true);
                 btnEditar.setEnabled(false);
                 btnBorrar.setEnabled(false);
-                btnSiguiente.setEnabled(false);
+                btnSiguiente.setEnabled(true);
 
 
             }

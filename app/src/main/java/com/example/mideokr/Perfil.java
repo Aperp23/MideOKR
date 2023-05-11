@@ -109,7 +109,6 @@ public class Perfil extends AppCompatActivity {
                 if(email.equals(usr[0].getEmail())){
                     etNombre.setText(usr[0].getNombre().toString());
                     etApellidos.setText(usr[0].getApellidos().toString());
-                    etPassword.setText(usr[0].getPassword().toString());
                     etDni.setText(usr[0].getDni().toString());
                 }
             }

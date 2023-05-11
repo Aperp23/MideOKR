@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.login_main);
-
+//FIXME ARREGLAR QUE NO PUEDA DARLE AL BOTON DE ENTRAR SIN DATOS, VALIDAR DATOS!!!
         auth = FirebaseAuth.getInstance();
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("Usuarios");
 

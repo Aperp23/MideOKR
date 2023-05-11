@@ -72,12 +72,7 @@ public class Tareas extends AppCompatActivity {
         btnSiguiente = (Button) findViewById(R.id.btnSiguiente);
         btnEditar = (Button) findViewById(R.id.btnEditar);
         cargarProyecto();
-
-
-
-
         cargarTareas();
-
 
         ArrayAdapter adpTareas = new ArrayAdapter(Tareas.this, android.R.layout.simple_spinner_dropdown_item, arrTareas );
         spSeleccionTarea.setAdapter(adpTareas);
@@ -146,11 +141,19 @@ public class Tareas extends AppCompatActivity {
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent i = new Intent(Tareas.this, Trabajadores.class);
-                i.putExtra("keyProyecto", keyRecib);
-                i.putExtra("usr", usuarioExtra);
-                i.putExtra("nombrePry", nombreProyecto);
-                startActivity(i);
+
+                if(arrTareas.size() == 1)
+                {
+                    Toast.makeText(Tareas.this, "Debe introducir al menos una tarea para continuar", Toast.LENGTH_LONG).show();
+                }
+                else{
+                    Intent i = new Intent(Tareas.this, Trabajadores.class);
+                    i.putExtra("keyProyecto", keyRecib);
+                    i.putExtra("usr", usuarioExtra);
+                    i.putExtra("nombrePry", nombreProyecto);
+                    startActivity(i);
+                }
+
             }
 
 
@@ -170,7 +173,7 @@ public class Tareas extends AppCompatActivity {
                                 borrarTarea();
                                 btnEditar.setEnabled(false);
                                 btnBorrar.setEnabled(false);
-                                btnSiguiente.setEnabled(false);
+                                btnSiguiente.setEnabled(true);
 
                                 btnGuardar.setEnabled(true);
                                 etNombreTarea.setEnabled(true);
