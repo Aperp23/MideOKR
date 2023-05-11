@@ -26,7 +26,7 @@
     <string name="sesion">Cerrar sesión</string>
     <string name="guardar">Guardar</string>
     <string name="descargar">Descargar</string>
-    <string name="calculo">Calcular duración</string>
+    <string name="calculo">Calcular días trabajo</string>
     <string name="comprobar">Comprobar estado</string>
     //Spinners
     <string name="spinner1">SELECCIONE PROYECTO</string>
